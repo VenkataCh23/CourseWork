@@ -1,0 +1,15 @@
+create table voters(voterid int(8) PRIMARY KEY,name varchar(20),age int(8),mobile int(10),city varchar(20),adharno int(12));
+create table citizens(adharno int(12) PRIMARY KEY ,name varchar(20),address varchar(20));
+alter table voters add check(age>=18);
+alter table citizens add check(length(adharno)=12);
+alter table voters add check(length(mobile)=10);
+alter table citizens add unique(address);
+alter table voters add foreign key(city) references citizens(address); 
+alter table voters modify name varchar(20) not null;
+alter table voters add unique(adharno);
+alter table citizens add unique(adharno);
+alter table voters add foreign key(adharno) references citizens(adharno);
+alter table voters alter age set default 18;
+select * from voters;
+select * from citizens;  
+desc table voters;   
